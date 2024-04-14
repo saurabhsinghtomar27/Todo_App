@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useTodo } from "../contexts";
+import Draggable from "react-draggable";
 
 function TodoItem({ todo }) {
   const [isTodoEditable, setIsTodoEditable] = useState(false);
@@ -15,6 +16,7 @@ function TodoItem({ todo }) {
     toggleComplete(todo.id);
   };
   return (
+    <Draggable>
     <div
       className={`flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${
         todo.completed ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"
@@ -34,6 +36,7 @@ function TodoItem({ todo }) {
         value={todoMsg}
         onChange={(e) => setTodoMsg(e.target.value)}
         readOnly={!isTodoEditable}
+        
       />
       {/* Edit, Save Button */}
       <button
@@ -57,6 +60,7 @@ function TodoItem({ todo }) {
         ❌
       </button>
     </div>
+    </Draggable>
   );
 }
 
